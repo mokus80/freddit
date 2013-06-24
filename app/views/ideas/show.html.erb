@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+
+<p>
+  <b>Name:</b>
+  <%= @idea.name %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%= @idea.title %>
+</p>
+
+<p>
+  <b>Content:</b>
+  <%= @idea.content %>
+</p>
+
+<%=link_to image_tag('thumbs_up', :border => 0), vote_for_idea_ideas_path(@idea), :remote => true %>
+<%=link_to image_tag('thumbs_down', :border => 0), vote_against_idea_ideas_path(@idea), :remote => true %>
+
+<%= link_to 'Back', ideas_path %>
