@@ -75,9 +75,9 @@ class IdeasController < ApplicationController
     end
   end
 
-  def vote_for_idea
+  def vote_up
     @idea = Idea.find(params[:id])
-    current_user.vote_for(@idea)
+    current_user.vote_up(@idea)
     respond_to do |format|
       format.js
     end

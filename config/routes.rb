@@ -1,5 +1,12 @@
 Fredditcd::Application.routes.draw do
-  resources :ideas
+  get "users/new"
+  resources :ideas do
+    member do
+      post :vote_up
+    end
+  end
+
+  resources :users
   
   #resources :ideas_create
   # The priority is based upon order of creation: first created -> highest priority.
