@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
 	#validates :email, presence: true
 	#validates :password, presence: true, length: { minimum: 6} 
 	#validates :password_confirmation, presence: true
+	# attr_accessible :name, :email
+
 	has_many :ideas
 	acts_as_voter
 end
