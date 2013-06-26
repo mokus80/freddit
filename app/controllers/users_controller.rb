@@ -1,23 +1,13 @@
 class UsersController < ApplicationController
-<<<<<<< HEAD
 
-#copied code from demo_app begin
-
-def index
-=======
   # GET /users
   # GET /users.json
   def index
->>>>>>> 9d239f693db17d006fe4440ea8085a668f4ba4f2
     @users = User.all
 
     respond_to do |format|
       format.html # index.html.erb
-<<<<<<< HEAD
-      #format.json { render json: @users }
-=======
       # format.json { render json: @users }
->>>>>>> 9d239f693db17d006fe4440ea8085a668f4ba4f2
     end
   end
 
@@ -28,11 +18,7 @@ def index
 
     respond_to do |format|
       format.html # show.html.erb
-<<<<<<< HEAD
-      #format.json { render json: @user }
-=======
       # format.json { render json: @user }
->>>>>>> 9d239f693db17d006fe4440ea8085a668f4ba4f2
     end
   end
 
