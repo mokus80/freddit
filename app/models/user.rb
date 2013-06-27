@@ -2,21 +2,33 @@
 #
 # Table name: users
 #
-#  id         :integer          not null, primary key
-#  name       :string(255)
-#  email      :string(255)
-#  created_at :datetime
-#  updated_at :datetime
+#  id                    :integer          not null, primary key
+#  name                  :string(255)
+#  email                 :string(255)
+#  created_at            :datetime
+#  updated_at            :datetime
+#  remember_token        :string(255)
+#  password              :string(255)
+#  password_confirmation :string(255)
 #
 
 class User < ActiveRecord::Base
 	#validates :password, presence: true, length: { minimum: 6} 
 	#validates :password_confirmation, presence: true
 	# attr_accessible :name, :email
+	
+	before_save { self.email = email.downcase }
+	before_save { create_remember_token }
+
 	validates :name,  presence: true, length: { maximum: 50 }
   	VALID_EMAIL_REGEX = /@/
   	validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }
 
 	has_many :ideas
 	acts_as_voter
+
+	private 
+		def create_remember_token
+			self.remember_token = SecureRandom.urlsafe_base64
+		end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130625091141) do
+ActiveRecord::Schema.define(version: 20130626133409) do
 
   create_table "ideas", force: true do |t|
     t.string   "title"
@@ -26,8 +26,14 @@ ActiveRecord::Schema.define(version: 20130625091141) do
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "password_digest"
+    t.string   "remember_token"
+    t.string   "password"
+    t.string   "password_confirmation"
   end
+
+  add_index "users", ["password"], name: "index_users_on_password"
+  add_index "users", ["password_confirmation"], name: "index_users_on_password_confirmation"
+  add_index "users", ["remember_token"], name: "index_users_on_remember_token"
 
   create_table "votes", force: true do |t|
     t.boolean  "vote",          default: false, null: false
