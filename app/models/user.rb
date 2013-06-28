@@ -10,6 +10,9 @@
 #
 
 class User < ActiveRecord::Base
+	before_save { self.email = email.downcase }
+  	before_save { create_remember_token }
+
 	#validates :password, presence: true, length: { minimum: 6} 
 	#validates :password_confirmation, presence: true
 	# attr_accessible :name, :email
@@ -19,4 +22,10 @@ class User < ActiveRecord::Base
 
 	has_many :ideas
 	acts_as_voter
+
+	private
+
+    def create_remember_token
+      self.remember_token = SecureRandom.urlsafe_base64
+    end
 end

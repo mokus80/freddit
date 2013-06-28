@@ -39,10 +39,10 @@ class IdeasController < ApplicationController
   def show
     @idea = Idea.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      # format.json { render json: @idea }
-    end
+    # respond_to do |format|
+    #   format.html # show.html.erb
+    #   # format.json { render json: @idea }
+    # end
   end
 
   def edit
@@ -77,8 +77,10 @@ class IdeasController < ApplicationController
 
   def vote_up
     @idea = Idea.find(params[:id])
-    current_user.vote_up(@idea)
-    respond_to do |format|
+    current_user.vote_for(@idea)
+    # @user.vote_up(@idea)
+    respond_to do |format|    current_user.vote_for(@idea)
+
       format.js
     end
   end
