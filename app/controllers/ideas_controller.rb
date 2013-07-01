@@ -78,11 +78,6 @@ class IdeasController < ApplicationController
   def vote_up
     @idea = Idea.find(params[:id])
     current_user.vote_for(@idea)
-    # @user.vote_up(@idea)
-    respond_to do |format|    current_user.vote_for(@idea)
-
-      format.js
-    end
   end
 
   private

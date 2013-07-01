@@ -16,6 +16,7 @@
   <%= @idea.content %>
 </p>
 
+
 <%= link_to 'Vote', vote_up_idea_path(@idea), :method => :post %>
 <%= link_to 'Edit', edit_idea_path(@idea) %>
 <%= link_to 'Back', ideas_path %>
