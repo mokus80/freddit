@@ -1,6 +1,11 @@
 <h1>Edit user</h1>
 
-<%= render 'form' %>
+<% if signed_in? %>
+    <li><%= render 'form' %></li>
+<% else %>
+	<p>Please sign-in first</p>
+        <li><%= link_to "Sign in", signin_path %></li>
+<% end %>
 
 <%= link_to 'Show', @user %> |
 <%= link_to 'Back', users_path %>

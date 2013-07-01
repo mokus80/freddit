@@ -1,1 +1,8 @@
-<h1> Thanks for voting </h1>
+<% if signed_in? %>
+    <h1> Thanks for voting </h1>
+<% else %>
+	<p>Please sign-in first</p>
+<% end %>
+
+<%= link_to 'Back', ideas_path %>
+<%= link_to 'Users', users_path %>

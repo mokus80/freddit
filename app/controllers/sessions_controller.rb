@@ -5,13 +5,18 @@ class SessionsController < ApplicationController
 
   def create
   	user = User.find_by(email: params[:sessions][:email].downcase)
-  	sign_in user
+  	
+    if user.nil?
+      redirect_to signup_path
+    else
+      sign_in user
   		# if user && user.authenticate(params[:session][:email])
     # #Sign the user in and redirect to the user's show page.
   		# else
     # #Create an error message and re-render the signin form.
   		# end
   	redirect_to ideas_url
+    end
   end
 
  def destroy

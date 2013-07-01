@@ -1,6 +1,12 @@
 <h1>Editing Idea</h1>
 
-<%= render 'form' %>
+<% if signed_in? %>
+    <li><%= render 'form' %></li>
+<% else %>
+	<p>Please sign-in first</p>
+<% end %>
+
+
 
 <%= link_to 'Show', @idea %> |
 <%= link_to 'Back', ideas_path %>

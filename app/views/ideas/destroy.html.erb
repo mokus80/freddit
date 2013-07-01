@@ -1,0 +1,11 @@
+<% if @user.signed_in? %>
+    <li><%= @idea.destroy %></li>
+<% else %>
+	<p>You can only destroy your own Zeug</p>
+<% end %>
+
+
+
+
+<%= link_to 'Show', @idea %> |
+<%= link_to 'Back', ideas_path %>
