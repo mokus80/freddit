@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0.rc1'
+gem 'rails', '4.0.0'
 gem 'bootstrap-sass', '2.1'
 gem 'bcrypt-ruby', '3.0.1'
 
@@ -9,7 +9,7 @@ gem 'bcrypt-ruby', '3.0.1'
 gem 'sqlite3'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0.rc1'
+gem 'sass-rails', '~> 4.0.0'
 
 #irreversibly encrypts the password to form the password hash
 gem 'bcrypt-ruby', '3.0.1'
@@ -39,7 +39,7 @@ group :doc do
 end
 
 #Rating
-gem "thumbs_up"
+gem 'thumbs_up'
 
 group :development do
   gem 'annotate', '2.5.0'

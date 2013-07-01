@@ -38,10 +38,10 @@ class IdeasController < ApplicationController
   def show
     @idea = Idea.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
+    #respond_to do |format|
+     # format.html # show.html.erb
       # format.json { render json: @idea }
-    end
+    #end
   end
 
   def edit
@@ -68,18 +68,18 @@ class IdeasController < ApplicationController
     @idea = Idea.find(params[:id])
     @idea.destroy
 
-    respond_to do |format|
-      format.html { redirect_to ideas_url }
-      # format.json { head :no_content }
-    end
+    # respond_to do |format|
+    #   format.html { redirect_to ideas_url }
+    #   # format.json { head :no_content }
+    # end
   end
 
   def vote_up
     @idea = Idea.find(params[:id])
     current_user.vote_for(@idea)
-    respond_to do |format|
-      format.js
-    end
+    # respond_to do |format|
+    #   format.js
+    # end
   end
 
   private

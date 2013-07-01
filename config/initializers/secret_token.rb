@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Fredditcd::Application.config.secret_key_base = '886475a4f5648935ce3e139ac8567f434e2ea643193303eb80ce242f9f20be9cfdcff70d6b3c412071a541066480b4e580f62777796fc9259f20862022df14bc'
+Fredditcd::Application.config.secret_key_base = 'f1e30628026cb36c068353c07e13b657462673e4906056760f528207e2847afc0731f742ed20c720df7ca7b0bd2d2cafafbc7eddcacb660114af2e9d7c31118f'
