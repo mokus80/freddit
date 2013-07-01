@@ -51,7 +51,6 @@ GEM
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.8.0)
-    letsrate (1.0.8)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -135,7 +134,6 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   jbuilder (~> 1.0.1)
   jquery-rails
-  letsrate (~> 1.0.8)
   rails (= 4.0.0.rc1)
   rspec-rails (~> 2.0)
   sass-rails (~> 4.0.0.rc1)

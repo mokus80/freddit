@@ -39,7 +39,6 @@ group :doc do
 end
 
 #Rating
-gem "letsrate", "~> 1.0.8"
 gem "thumbs_up"
 
 group :development do

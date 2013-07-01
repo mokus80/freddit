@@ -3,14 +3,6 @@ class SessionsController < ApplicationController
 def new
 end
 
- params = { 
-  "utf8"=>"✓", 
-  "authenticity_token"=>"AmolamwcKMQmrb61FoouiaeHu+GAPEta2WpwSS/DXRw=",
-  "sessions" => {"email"=>"me@me.com"}, 
-  "commit"=>"Sign in", 
-  "action"=>"create", 
-  "controller"=>"sessions"     
- }
 def create
 	user = User.find_by(email: params[:sessions][:email].downcase)
 
@@ -20,7 +12,8 @@ def create
 end
 
 def destroy
-	sign_out user
+  sign_out
+  redirect_to signin_path
 end
 
 end
