@@ -20,20 +20,25 @@ class IdeasController < ApplicationController
   end
 
   def create
-    @idea = Idea.new ideas_params
-      # @idea.name = params[:idea][:name]
-      # @idea.title = params[:idea][:title]
-      # @idea.content = params[:idea][:content]
-    # logger.info "in create"
-    respond_to do |format|
-      if @idea.save
-        # logger.info "save successful"
-        format.html {redirect_to @idea, notice: 'Idea was succesfully created'}
-      else 
-        # logger.info "save failed"
-        format.html {render action: "new"}
-      end
+    if signed_in? #current_user
+      @idea = Idea.new ideas_params
+    else 
+      redirect_to signin_path
     end
+    # @idea = Idea.new ideas_params
+    #   # @idea.name = params[:idea][:name]
+    #   # @idea.title = params[:idea][:title]
+    #   # @idea.content = params[:idea][:content]
+    # # logger.info "in create"
+    # respond_to do |format|
+    #   if @idea.save
+    #     # logger.info "save successful"
+    #     format.html {redirect_to @idea, notice: 'Idea was succesfully created'}
+    #   else 
+    #     # logger.info "save failed"
+    #     format.html {render action: "new"}
+    #   end
+    # end
   end
 
   def show
@@ -66,13 +71,21 @@ class IdeasController < ApplicationController
 
   def destroy
     # Ideas.find(params[:id]).destroy
-    @idea = Idea.find(params[:id])
-    @idea.destroy
-
-    respond_to do |format|
-      format.html { redirect_to ideas_url }
-      # format.json { head :no_content }
+    if signed_in? #current_user
+      @idea = Idea.find(params[:id])
+      @idea.destroy
+    else 
+      redirect_to signin_path
     end
+  
+    
+    # @idea = Idea.find(params[:id])
+    # @idea.destroy
+
+    # respond_to do |format|
+    #   format.html { redirect_to ideas_url }
+    #   # format.json { head :no_content }
+    # end
   end
 
   def vote_up
