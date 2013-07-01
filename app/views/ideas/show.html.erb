@@ -1,6 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-
 <p>
   <b>Name:</b>
   <%= @idea.name %>
@@ -16,7 +15,17 @@
   <%= @idea.content %>
 </p>
 
-<%= link_to 'Vote', vote_up_idea_path(@idea), :method => :post %>
-<%= link_to 'Edit', edit_idea_path(@idea) %>
-<%= link_to 'Back', ideas_path %>
-<%= link_to 'Users', users_path %>
+<p>
+	<b>Votes:</b>
+	<%= @idea.votes_count %>
+</p>
+
+<% if signed_in? %>
+	<%= link_to 'Vote for this idea', vote_up_idea_path(@idea), :method => :post %> |
+	<%= link_to 'Edit', edit_idea_path(@idea) %> |
+	<%= link_to 'Back', ideas_path %> 
+<% else %>
+	<%= link_to 'To vote for this idea, Please sign-in', signin_path %> |
+	<%= link_to 'Edit', edit_idea_path(@idea) %> |
+	<%= link_to 'Back', ideas_path %> 
+<% end %>

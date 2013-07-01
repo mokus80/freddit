@@ -1,6 +1,10 @@
-<h1>Editing Idea</h1>
+<h1>Edit This Idea</h1>
 
-<%= render 'form' %>
+<% if signed_in? %>
+	<%= render 'form' %>
+<% else %>
+	<h2>You must <%= link_to 'sign-in', signin_path %> to edit an idea.</h2>
+<% end %>
 
 <%= link_to 'Show', @idea %> |
 <%= link_to 'Back', ideas_path %>

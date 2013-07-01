@@ -8,12 +8,16 @@
   </h2>
   <br>
 
-  <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
-  <br>
-  <br>
-  <br>
-  Already signed up?
-  <br>
-  <br>
-  <%= link_to "Sign in", signin_path, class: "btn btn-large btn-primary" %>
+  <% if signed_in? %>
+    <%= link_to 'Start Voting on Ideas', ideas_path, class: "btn btn-large btn-primary" %>
+  <% else %>
+    <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
+    <br>
+    <br>
+    <br>
+    Already signed up?
+    <br>
+    <br>
+    <%= link_to "Sign in", signin_path, class: "btn btn-large btn-primary" %>
+  <% end %>
 </div>
