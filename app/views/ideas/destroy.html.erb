@@ -1,3 +1,7 @@
-<h1>This idea has been deleted</h2>
+<% if signed_in? %>
+	<h1>This idea has been deleted</h2>
 
-<h3><%= link_to 'Back to Ideas', ideas_path %></h3>
+	<h3><%= link_to 'Back to Ideas', ideas_path %></h3>
+<% else %>
+	<h2>You must <%= link_to 'sign-in', signin_path %> to delete this idea.</h2>
+<% end %>

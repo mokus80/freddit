@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-
+before_action :signed_in_user, only: [:edit, :update]
+before_action :correct_user,   only: [:edit, :update]
   # GET /users
   # GET /users.json
   def index
@@ -80,7 +81,7 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url }
       # format.json { head :no_content }
     end
-  end
+  end 
 
   private
   	def users_params
