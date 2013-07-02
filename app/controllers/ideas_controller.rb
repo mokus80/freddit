@@ -1,7 +1,9 @@
 class IdeasController < ApplicationController
 
+  before_filter :signed_in_user, only: [:new, :create, :vote_up]
+  # before_filter :correct_user,   only: [:edit, :update, :destroy]
+
   def index
-    
   @idea = Idea.all
  
   respond_to do |format|
@@ -16,14 +18,21 @@ class IdeasController < ApplicationController
   respond_to do |format|
     format.html  # new.html.erb
     # format.json  { render :json => @idea }
-  end
+    end
   end
 
   def create
     if signed_in? #current_user
       @idea = Idea.new ideas_params
+      @idea.user = current_user
+      @idea.save
+      # if @idea.save
+      #   redirect_to @idea, notice: 'Idea succesfully created'
+      # else
+      #   render action: new
+      # end
     else 
-      redirect_to signin_path
+      deny_access
     end
     # @idea = Idea.new ideas_params
     #   # @idea.name = params[:idea][:name]
@@ -52,11 +61,13 @@ class IdeasController < ApplicationController
 
   def edit
     @idea = Idea.find(params[:id])
+    deny_access unless current_user?(@idea.user)
   end
 
   def update
     # Ideas.find(params[:id]).update(params)
     @idea = Idea.find(params[:id])
+    # redirect_to root_url unless current_user?(@idea.user)
 
     respond_to do |format|
       if @idea.update_attributes(ideas_params)
@@ -71,11 +82,11 @@ class IdeasController < ApplicationController
 
   def destroy
     # Ideas.find(params[:id]).destroy
-    if signed_in? #current_user
-      @idea = Idea.find(params[:id])
+    @idea = Idea.find(params[:id])
+    if current_user?(@idea.user)
       @idea.destroy
     else 
-      redirect_to signin_path
+      deny_access
     end
   
     
@@ -90,11 +101,21 @@ class IdeasController < ApplicationController
 
   def vote_up
     @idea = Idea.find(params[:id])
-    current_user.vote_for(@idea)
+    if signed_in?
+      current_user.vote_for(@idea)
+    else
+      deny_access
+    end
+  end
+
+  def deny_access
+    redirect_to signin_path
   end
 
   private
   def ideas_params
-    params.require(:idea).permit(:name, :title, :content)
+    params.require(:idea).permit(:name, :title, :content, :user_id)
   end
+
+
 end

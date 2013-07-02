@@ -1,21 +1,27 @@
 class UsersController < ApplicationController
 
+  before_filter :signed_in_user, only: [:show]
+  before_filter :correct_user,   only: [:edit, :update]
+
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      # format.json { render json: @users }
+    if signed_in? #current_user
+      @users = User.all
+    else 
+      redirect_to signin_path, notice: 'You have to be signed in to see the users'
     end
+    # respond_to do |format|
+    #   format.html # index.html.erb
+    #   # format.json { render json: @users }
+    # end
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
     if signed_in? #current_user
-      @idea = User.find(params[:id])
+      @user = User.find(params[:id])
     else 
       redirect_to signin_path
     end
@@ -40,7 +46,11 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user = User.find(params[:id])
+    if signed_in? #current_user
+      @user = User.find(params[:id])
+    else 
+      redirect_to signin_path
+    end
   end
 
   # POST /users
@@ -88,18 +98,20 @@ class UsersController < ApplicationController
 
   # DELETE /users/1
   # DELETE /users/1.json
-  def destroy
-    @user = User.find(params[:id])
-    @user.destroy
+  # def destroy
+  #   @user = User.find(params[:id])
+  #   @user.destroy
 
-    respond_to do |format|
-      format.html { redirect_to users_url }
-      # format.json { head :no_content }
-    end
-  end
+  #   respond_to do |format|
+  #     format.html { redirect_to users_url }
+  #     # format.json { head :no_content }
+  #   end
+  # end
 
   private
-  	def users_params
+
+
+  def users_params
     	params.require(:user).permit(:name, :email)
-  	end
+  end
 end

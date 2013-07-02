@@ -5,6 +5,8 @@
     <th>Name</th>
     <th>Title</th>
     <th>Content</th>
+    <th>Posted by</th>
+    <th>Number of votes</th>
     <th></th>
     <th></th>
     <th></th>
@@ -15,10 +17,13 @@
     <td><%= idea.name %></td>
     <td><%= idea.title %></td>
     <td><%= idea.content %></td>
+    <td><%= idea.user.name %></td>
+    <td><%= idea.votes_count %></td>
     <td><%= link_to 'Show', idea %></td>
     <td><%= link_to 'Edit', edit_idea_path(idea) %></td>
     <td><%= link_to 'Destroy', idea, :confirm => 'Are you sure?',
                                      :method => :delete %></td>
+    <td><%= link_to 'Vote for this idea', vote_up_idea_path(idea), :method => :post %></td> 
   </tr>
 <% end %>
 </table>
