@@ -53,11 +53,8 @@ class IdeasController < ApplicationController
   end
 
   def edit
-    if signed_in?
-      @idea = Idea.find(params[:id])
-    else
-      redirect_to signin_path
-    end
+    @idea = Idea.find(params[:id])
+    redirect_to root_path unless current_user?(@idea.user)
   end
 
   def update
@@ -74,17 +71,19 @@ class IdeasController < ApplicationController
         end
       end
     else 
-      redirect_to signin_path
+      flash.now[:error]= "You can't do this"
+      render 'update'
     end
   end
 
   def destroy
     # Ideas.find(params[:id]).destroy
-    if signed_in?
-      @idea = Idea.find(params[:id])
+    @idea = Idea.find(params[:id])
+    if current_user?(@idea.user)
       @idea.destroy
     else
-      redirect_to signin_path
+      flash.now[:error]= 'You cannot do this'
+      render 'destroy_error'
     end
 
     # respond_to do |format|
@@ -101,7 +100,7 @@ class IdeasController < ApplicationController
       #   format.js
       # end
     else 
-      redirect_to signin_path
+      flash.now[:error]= "You can't do this"
     end
   end
 

@@ -1,14 +1,5 @@
 <%= form_for(@idea) do |f| %>
-  <% if @idea.errors.any? %>
-  <div id="errorExplanation">
-    <h2><%= pluralize(@idea.errors.count, "error") %> prohibited
-        this idea from being saved:</h2>
-    <ul>
-    <% @idea.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul> 
-  </div>
+<%= render 'shared/error_messages', object: f.object %>
   <% end %>
  
   <div class="field">
